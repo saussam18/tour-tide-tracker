@@ -121,16 +121,16 @@ const Tours = () => {
                       Band
                     </label>
                     <Select 
-                      value={selectedBand || ""} 
+                      value={selectedBand || "all-bands"} 
                       onValueChange={(value) => 
-                        setSelectedBand(value === "" ? null : value)
+                        setSelectedBand(value === "all-bands" ? null : value)
                       }
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="All Bands" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Bands</SelectItem>
+                        <SelectItem value="all-bands">All Bands</SelectItem>
                         {bands.map((band) => (
                           <SelectItem key={band.id} value={band.id}>
                             {band.name}
