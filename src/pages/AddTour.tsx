@@ -84,7 +84,11 @@ const AddTour = () => {
       return;
     }
     
-    addTour(band.id, { dates: tourDates });
+    // Include bandId in the tour object
+    addTour(band.id, { 
+      bandId: band.id,  // Add this line to fix the type error
+      dates: tourDates 
+    });
     navigate(`/tours?band=${band.id}`);
   };
 
