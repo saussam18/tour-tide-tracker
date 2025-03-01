@@ -86,7 +86,7 @@ const AddTour = () => {
     
     // Include bandId in the tour object
     addTour(band.id, { 
-      bandId: band.id,  // Add this line to fix the type error
+      bandId: band.id,
       dates: tourDates 
     });
     navigate(`/tours?band=${band.id}`);
