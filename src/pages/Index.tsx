@@ -1,12 +1,12 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { BandCard } from "@/components/BandCard";
+import { TourItem } from "@/components/TourItem";
 import { useBands } from "@/context/BandsContext";
-import { PlusCircle, CalendarDays } from "lucide-react";
+import { PlusCircle, CalendarDays, Music } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();

@@ -27,7 +27,7 @@ const AddTour = () => {
   const { bandId } = useParams<{ bandId: string }>();
   const { getBand, addTour } = useBands();
   const [band, setBand] = useState<Band | undefined>(undefined);
-  const [tourDates, setTourDates] = useState<Array<Omit<TourDate, "id">>>([]);
+  const [tourDates, setTourDates] = useState<TourDate[]>([]);
   
   useEffect(() => {
     if (bandId) {
@@ -45,6 +45,7 @@ const AddTour = () => {
     setTourDates([
       ...tourDates,
       {
+        id: crypto.randomUUID(),
         date: new Date(),
         venue: "",
         city: "",

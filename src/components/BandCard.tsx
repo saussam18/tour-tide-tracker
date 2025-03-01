@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Band } from "@/types";
-import { Calendar, ChevronRight } from "lucide-react";
+import { Calendar, ChevronRight, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useBands } from "@/context/BandsContext";
