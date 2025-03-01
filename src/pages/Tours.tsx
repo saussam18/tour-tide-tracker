@@ -131,7 +131,7 @@ const Tours = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="">All Bands</SelectItem>
-                        {bands.map(band => (
+                        {bands.map((band) => (
                           <SelectItem key={band.id} value={band.id}>
                             {band.name}
                           </SelectItem>
