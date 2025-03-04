@@ -1,10 +1,12 @@
 
 import React from "react";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import { TourDate } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Calendar as CalendarIcon, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface TourItemProps {
   tourDate: TourDate;
@@ -12,8 +14,13 @@ interface TourItemProps {
 }
 
 export const TourItem: React.FC<TourItemProps> = ({ tourDate, bandName }) => {
+  const navigate = useNavigate();
   const date = new Date(tourDate.date);
   const isPast = date < new Date();
+  
+  const handleLocationClick = (location: string) => {
+    navigate(`/tours/location/${location}`);
+  };
   
   return (
     <Card className={cn(
@@ -46,9 +53,13 @@ export const TourItem: React.FC<TourItemProps> = ({ tourDate, bandName }) => {
           <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
               <MapPin className="h-3.5 w-3.5" />
-              <span>
+              <Button 
+                variant="link" 
+                className="h-auto p-0 text-muted-foreground hover:text-primary"
+                onClick={() => handleLocationClick(tourDate.city)}
+              >
                 {tourDate.city}, {tourDate.country}
-              </span>
+              </Button>
             </div>
             <div className="flex items-center gap-1">
               <CalendarIcon className="h-3.5 w-3.5" />

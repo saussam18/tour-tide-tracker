@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import AddBand from "./pages/AddBand";
 import AddTour from "./pages/AddTour";
 import Tours from "./pages/Tours";
+import LocationTours from "./pages/LocationTours";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/add-band" element={<AddBand />} />
             <Route path="/add-tour/:bandId" element={<AddTour />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/tours/location/:location" element={<LocationTours />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
@@ -10,7 +9,8 @@ import {
   Search, 
   Filter,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  MapPin
 } from "lucide-react";
 import { TourItem } from "@/components/TourItem";
 import { TourDate, Band } from "@/types";
@@ -22,12 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuCheckboxItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 type TourDateWithBand = TourDate & { bandName: string; bandId: string };
 
@@ -84,6 +78,11 @@ const Tours = () => {
     return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
   });
   
+  // Get unique locations
+  const uniqueLocations = Array.from(
+    new Set(allTourDates.map(date => date.city))
+  ).slice(0, 5); // Limit to top 5 locations
+  
   // Update search params when band selection changes
   useEffect(() => {
     if (selectedBand) {
@@ -104,6 +103,27 @@ const Tours = () => {
             <p className="text-muted-foreground">
               View all upcoming tour dates
             </p>
+            
+            {/* Popular Locations */}
+            {uniqueLocations.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="text-sm font-medium flex items-center mr-2">
+                  <MapPin className="h-3.5 w-3.5 mr-1" />
+                  Popular locations:
+                </span>
+                {uniqueLocations.map(location => (
+                  <Button
+                    key={location}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full text-xs"
+                    onClick={() => navigate(`/tours/location/${location}`)}
+                  >
+                    {location}
+                  </Button>
+                ))}
+              </div>
+            )}
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
